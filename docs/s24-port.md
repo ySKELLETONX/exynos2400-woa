@@ -7,11 +7,45 @@ explicitly rejects the S24, even if passed a custom target list.
 
 ## Current evidence
 
-The local phone previously reported `SM-S921B`, `s5e9945` and Android `17`
-over ADB. Those three observations are preliminary, not a complete inventory.
-They do not establish bootloader unlock availability, firmware compatibility,
-physical memory addresses, reserved regions or a usable Windows boot chain.
-The phone was unavailable when the initial port code was prepared.
+The allowlisted collector ran successfully on the local phone on 2026-11-24.
+The raw observation remains local under `research-artifacts/`; no transport
+identifier, account data or partition contents are published.
+
+| Observation | Value |
+|---|---|
+| Model / codename | SM-S921B / e1s |
+| SoC / board / ABI | s5e9945 / erd9945 / arm64-v8a |
+| Bootloader and incremental build | S921BXXUHEZIF |
+| Android / SDK | 17 / 37 |
+| Security patch | 2026-09-05 |
+| Kernel | 6.1.162-android14-11 |
+| Physical display size | 1080 x 2340 |
+| Flash lock / vbmeta state | 1 / locked |
+| Verified boot / warranty bit | green / 0 |
+| OEM-unlock permission/support properties | Unavailable, not proof of either supported or unsupported unlocking |
+| Device-tree model / compatible | Unavailable to the unprivileged ADB collector |
+
+The partition directory exposes `boot`, `init_boot`, `vendor_boot`, `dtbo`,
+`recovery`, `vbmeta`, `vbmeta_system` and `super`, among others. Directory names
+do not establish partition geometry, slot policy or a safe write target.
+There is no memory map or firmware-matched device tree yet.
+
+### Boot-access research
+
+The first blocking hardware prerequisite is a confirmed path to boot custom
+code with a tested stock restore procedure. Two open upstream reports refer to
+this exact firmware: [Root-My-Galaxy #796](https://github.com/BuSung-dev/Root-My-Galaxy/issues/796)
+and [Root-My-Galaxy-Payloads #453](https://github.com/BuSung-dev/Root-My-Galaxy-Payloads/issues/453).
+They are requests/reports about Android root, not demonstrations of an unlocked
+bootloader or native Windows. As reviewed on 2026-11-24, #453 has no comments;
+#796's comment requests a different build. Neither establishes boot access here.
+
+A [maintainer's explanation on another Samsung variant](https://github.com/rushiranpise/Root-My-Galaxy-Next/issues/52#issuecomment-6588311278)
+distinguishes a visible OEM-unlock toggle from an actual bootloader unlock.
+That discussion concerns SM-S928B and cannot prove the Exynos SM-S921B's
+bootloader implementation. It does rule out treating a runtime property edit
+as sufficient evidence. No exploit, property edit, unlock, reboot or partition
+write was attempted during this inventory.
 
 The external postmarketOS project reports Linux on this model using stock
 Samsung kernel/modules and a replacement `init_boot` ramdisk. Its documented

@@ -12,7 +12,7 @@
   "windows_driver_package": null,
   "validated_windows_builds": [],
   "milestones": [
-    {"id": "device-inventory", "status": "pending", "requires": "Fresh allowlisted observation of the exact phone and firmware"},
+    {"id": "device-inventory", "status": "observed-basic", "requires": "Basic inventory collected on 2026-11-24; device tree and OEM-unlock availability remain unavailable"},
     {"id": "boot-access", "status": "pending", "requires": "Confirmed unlock path for this firmware and tested stock recovery procedure"},
     {"id": "hardware-description", "status": "pending", "requires": "Firmware-matched DTB/DTBO, reserved memory and controller inventory"},
     {"id": "uefi-entry", "status": "not-implemented", "requires": "E1sPkg entry, exception level, memory map, timer, watchdog and diagnostic output"},

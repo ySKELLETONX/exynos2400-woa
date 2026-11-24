@@ -37,11 +37,16 @@ on stock Android without root or rebooting.
 | Item | State |
 |---|---|
 | Target | SM-S921B only; other S24 variants are not interchangeable |
-| Hardware inventory | Collector implemented; complete live report still required |
+| Hardware inventory | Basic live inventory collected: S921BXXUHEZIF / Android 17; device tree unavailable |
 | Bootloader unlock / stock restore | Not validated on the local firmware |
 | Exynos 2400 UEFI and ACPI | Not implemented |
 | Native Windows storage, USB, input and display drivers | Not implemented |
 | Windows 11 boot / usable desktop | Not validated |
+
+The observed phone reports its bootloader **locked**, verified boot **green**
+and warranty bit **0**. ADB did not report OEM-unlock availability. Native boot
+testing depends on establishing a real boot-access path for this exact firmware;
+temporary Android root would not by itself establish that path.
 
 The first hardware milestone is a recoverable UEFI entry with diagnostics, not
 a Windows installation. Bootloader restrictions and missing drivers may block
