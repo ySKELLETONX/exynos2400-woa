@@ -1,5 +1,10 @@
 # Contributing
 
+This fork investigates SM-S921B / e1s / Exynos 2400. Its S24 code is research
+tooling only. See `docs/s24-port.md`; never put a research target in
+`SupportedTarget.All` before firmware, drivers and recovery have been validated.
+The original contribution rules below apply to the inherited S9+ code.
+
 Thanks for your interest. A few things make this project unusual, so please read
 this first.
 

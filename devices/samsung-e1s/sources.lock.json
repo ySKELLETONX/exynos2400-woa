@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-24",
+  "sources": [
+    {
+      "repository": "https://github.com/ntdevlabs/exynos9810-woa",
+      "commit": "6e2cacf15f6b99b198ed12ad242da69eb2259bac",
+      "role": "Fork ancestor; S9+ installer architecture and EDK2 reference only",
+      "limitation": "Exynos 9810 board addresses, recovery images, ACPI and drivers are not S24 compatible"
+    },
+    {
+      "repository": "https://github.com/dotnetdreamer/postmarketos-galaxy-s24",
+      "commit": "420de9b538346d74ac2351edd0350f62de51d0e1",
+      "role": "Reported e1s Linux bring-up observations and hardware documentation",
+      "limitation": "Reported on S921BXXU6BYE7 / Android 15; not independently reproduced here; not Windows drivers"
+    },
+    {
+      "repository": "https://github.com/s5e9945-aosp/android_kernel_samsung_s5e9945",
+      "commit": "9e185c89ca87aaba553c62dac6f18b7e1994b189",
+      "role": "Candidate kernel source reference for Exynos 2400 research",
+      "limitation": "Branch name refers to e2s; firmware match and complete vendor controller sources still need verification"
+    },
+    {
+      "repository": "https://github.com/s5e9945-aosp/android_device_samsung_e1s",
+      "commit": "e5edde1d51abf909b78c115d38573fc2ef5ac19b",
+      "role": "Candidate e1s Android board configuration reference",
+      "limitation": "Android device configuration is not a UEFI platform or Windows board support package"
+    }
+  ]
+}

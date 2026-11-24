@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "model": "SM-S921B",
+  "codename": "e1s",
+  "soc": "Exynos 2400",
+  "soc_tokens": ["s5e9945", "exynos2400"],
+  "architecture": "arm64-v8a",
+  "status": "research-only",
+  "windows_boot_validated": false,
+  "flash_allowed": false,
+  "uefi_platform": null,
+  "windows_driver_package": null,
+  "validated_windows_builds": [],
+  "milestones": [
+    {"id": "device-inventory", "status": "pending", "requires": "Fresh allowlisted observation of the exact phone and firmware"},
+    {"id": "boot-access", "status": "pending", "requires": "Confirmed unlock path for this firmware and tested stock recovery procedure"},
+    {"id": "hardware-description", "status": "pending", "requires": "Firmware-matched DTB/DTBO, reserved memory and controller inventory"},
+    {"id": "uefi-entry", "status": "not-implemented", "requires": "E1sPkg entry, exception level, memory map, timer, watchdog and diagnostic output"},
+    {"id": "uefi-services", "status": "not-implemented", "requires": "Display GOP, storage access, ACPI tables, runtime services and Windows loader handoff"},
+    {"id": "windows-drivers", "status": "not-implemented", "requires": "Exynos 2400 storage, interrupt/DMA, USB and input drivers"},
+    {"id": "windows-boot", "status": "not-validated", "requires": "Reproducible boot with logs on the exact S24 and Windows build"}
+  ]
+}

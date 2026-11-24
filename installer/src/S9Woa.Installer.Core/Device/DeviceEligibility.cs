@@ -33,6 +33,17 @@ public static class DeviceEligibility
             return results;
         }
 
+        // A research target must never inherit the validated S9+ flashing path,
+        // including when a caller supplies its own target list.
+        if (string.Equals(d.Model, "SM-S921B", StringComparison.OrdinalIgnoreCase))
+        {
+            results.Add(new("s24-port", "Galaxy S24 port", CheckSeverity.Blocker,
+                "SM-S921B (Exynos 2400 / e1s) is a research target, not an installable Windows target.",
+                "Use tools/s24/collect.py for read-only inventory. S24 UEFI, ACPI and Windows drivers "
+                + "are not implemented or validated. Do not use S9+ recovery, firmware or partition layouts."));
+            return results;
+        }
+
         var target = targets.FirstOrDefault(t => string.Equals(t.Model, d.Model, StringComparison.OrdinalIgnoreCase));
         if (target is null)
         {

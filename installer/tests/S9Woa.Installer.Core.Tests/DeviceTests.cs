@@ -86,6 +86,25 @@ public class DeviceTests
     }
 
     [Theory]
+    [InlineData(DeviceMode.Android)]
+    [InlineData(DeviceMode.Recovery)]
+    [InlineData(DeviceMode.Download)]
+    public void S24ResearchTargetCannotEnterS9InstallationEvenWithCustomTargets(DeviceMode mode)
+    {
+        var s24 = new DeviceSnapshot("S", mode, "SM-S921B", "e1s", "s5e9945",
+            "S921BXXU6BYE7", "15", null, true, false, "orange", true);
+        var inventedTarget = new SupportedTarget("SM-S921B", "S921B", "e1s", "s5e9945", "S921BXXU6BYE7");
+        foreach (var targets in new IReadOnlyList<SupportedTarget>[] { SupportedTarget.All, [inventedTarget] })
+        {
+            var checks = DeviceEligibility.Evaluate(s24, targets);
+            Assert.True(checks.HasBlockers());
+            Assert.Equal("s24-port", Assert.Single(checks).Id);
+        }
+        Assert.DoesNotContain(SupportedTarget.All, t => t.Model == "SM-S921B");
+        Assert.Null(DeviceSnapshot.InDownloadMode("S", "S921BXXU6BYE7"));
+    }
+
+    [Theory]
     [InlineData(RebootTarget.System, "-s S reboot")]
     [InlineData(RebootTarget.Recovery, "-s S reboot recovery")]
     [InlineData(RebootTarget.Download, "-s S reboot download")]
